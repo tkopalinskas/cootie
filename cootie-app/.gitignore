@@ -1,5 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Maven template
+cootie.iml
+cootie.ipr
+cootie.iws
 target/
 pom.xml.tag
 pom.xml.releaseBackup

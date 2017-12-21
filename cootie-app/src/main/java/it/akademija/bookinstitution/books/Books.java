@@ -3,32 +3,17 @@ package it.akademija.bookinstitution.books;
 import javax.persistence.*;
 
 @Entity
-@Table
 public class Books {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true)
     private long id;
-    @Column
+    @Column(unique = true)
     private String name;
-    @Column
     private  String author;
-    @Column
     private int pages;
-    @Column
     private String img;
 
-
-    public Books(){}
-    public Books(String name, String author, int pages, String img){
-        this.name = name;
-        this.author = author;
-        this.pages = pages;
-        this.img = img;
-        this.id = id;
-
-    }
 
     public String getName() {
         return name;

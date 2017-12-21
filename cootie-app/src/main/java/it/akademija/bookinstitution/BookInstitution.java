@@ -5,36 +5,24 @@ import it.akademija.bookinstitution.books.Books;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
 public class BookInstitution {
 
-    @Column
+    @Column(unique = true)
     private String isntName;
-    @Column
     private String town;
-    @Column
     private String picture;
-    @Column
     private String category;
     @Enumerated
     private bookInstitutionType bookInstitutionType;
-
+    @ManyToMany(mappedBy = "bookInsitutions")
     private List<Books> books;
 
 
-
-    public BookInstitution(){}
-    public BookInstitution(String instName, String town, String picture, String category){
-        this.isntName = instName;
-        this.town = town;
-        this.picture = picture;
-        this.category = category;
-        this.books = new ArrayList<>();
-    }
 
     public String getIsntName() {
         return isntName;
@@ -78,6 +66,13 @@ public class BookInstitution {
 
     public enum bookInstitutionType{
         LIBRARY, STORE, RENT, ARCHYVE}
+
+    public void addBook(Books book){
+        books.add(book);
+    }
+    public void deleteBook(Books book){
+        books.remove(book);
+    }
 
 }
 

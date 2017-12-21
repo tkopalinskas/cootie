@@ -5,8 +5,10 @@ import it.akademija.bookinstitution.books.Books;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.transaction.Transactional;
-import java.util.List;
+
 
 @Service
 public class BookInstitutionService {
@@ -21,9 +23,18 @@ public class BookInstitutionService {
         bookInstitutionRepository.save(bookInstitution);
     }
 
-    @Transactional
-    public void addBookToInstitution(BookInstitution bookInstitution, Books book){
 
+
+    @Transactional
+    public void addBookToInstitution(String institutionname, Books book){
+        BookInstitution bi1 =bookInstitutionRepository.findBookInsitutionByName(institutionname);
+        bi1.addBook(book);
+
+    }
+    @Transactional
+    public void removeBookFromInstitution(String institutionname, Books book){
+        BookInstitution bi1 =bookInstitutionRepository.findBookInsitutionByName(institutionname);
+        bi1.deleteBook(book);
     }
 
 //    public List<BookInstitution> getAllBookInstitutions(){
